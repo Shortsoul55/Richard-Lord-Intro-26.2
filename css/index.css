@@ -1,0 +1,224 @@
+/* ----------------------------------
+   GLOBAL PAGE STYLING
+---------------------------------- */
+
+body {
+    background: linear-gradient(90deg, #FF6F61, #C850C0);
+    color: #222; /* readable dark text */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding-top: 80px; /* space for sticky header */
+}
+
+/* Section spacing */
+section {
+    padding: 30px 20px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.75); /* readable contrast layer */
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+
+/* Center the About section */
+#About {
+    text-align: center;
+}
+
+/* ----------------------------------
+   HEADINGS (Readable Purple)
+---------------------------------- */
+
+h1, h2 {
+    color: #4B0082; /* deep readable purple */
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 30px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6F61, #C850C0);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* ----------------------------------
+   EXPERIENCE SECTION (Flexbox)
+---------------------------------- */
+
+#Experience {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.experience-item {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #FF6F61;
+}
+
+.experience-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.job-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4B0082; /* readable purple */
+}
+
+.job-date {
+    font-size: 1rem;
+    color: #FF6F61; /* coral */
+}
+
+.job-description {
+    margin-top: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* ----------------------------------
+   CONNECT SECTION WITH ICONS
+---------------------------------- */
+
+#Connect ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+#Connect li {
+    display: flex;
+    align-items: center;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px; /* optional rounded corners */
+    padding: 6px;
+    background-color: rgba(255, 255, 255, 0.25); /* contrast box */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-3px);
+}
+
+
+/* ----------------------------------
+   PROFILE PICTURE (Gradient Border)
+---------------------------------- */
+
+.profile-pic {
+    display: block;
+    margin: 20px auto;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    background: linear-gradient(90deg, #FF6F61, #C850C0);
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ----------------------------------
+   MODERN STICKY HEADER (Readable)
+---------------------------------- */
+
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    background: linear-gradient(90deg, #FF6F61, #C850C0); /* coral → purple */
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+#navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+/* NAV LINKS — boxed, readable, no animations */
+#navbar a {
+    display: inline-block;
+    padding: 8px 16px;
+
+    /* Orange-yellow readable text */
+    color: #FFD966; /* warm, readable, high contrast */
+
+    font-weight: 600;
+    text-decoration: none;
+
+    /* Subtle contrast box */
+    background-color: rgba(255, 255, 255, 0.041);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+
+    /* No animations */
+    transition: none;
+}
+
+/* Hover — simple color swap, no movement */
+#navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.89);
+    color: #352917; /* lighter yellow on hover */
+}
+
+
+
+/* ----------------------------------
+   OPTIONAL GRADIENT BUTTON STYLE
+---------------------------------- */
+
+.button {
+    background: linear-gradient(90deg, #FF6F61, #C850C0);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(200, 80, 192, 0.6);
+}
+
