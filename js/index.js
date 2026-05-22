@@ -1,11 +1,12 @@
 const today = new Date();
 const thisYear = today.getFullYear();
 
-const body = document.body;
+const copyright = document.createElement("p");
 const footer = document.createElement("footer");
+copyright.textContent = `© ${thisYear} Richard Lord — All Rights Reserved`;
 
-footer.textContent = `© ${thisYear} Richard Lord — All Rights Reserved`;
-body.appendChild(footer);
+footer.appendChild(copyright);
+document.body.appendChild(footer);
 
 // Create an array of your technical skills
 const skills = ["JavaScript", "HTML", "CSS", "Git", "Visual Studio Code", "PowerShell", "GitHub"];
@@ -17,3 +18,12 @@ for (let i = 0; i < skills.length; i++) {
     skill.innerText = skills[i];
     skillsList.appendChild(skill);
 }
+
+
+
+
+
+
+
+
+

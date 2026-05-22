@@ -136,14 +136,7 @@ footer {
   section > div {
     flex-direction: column;
   }
-  @media (max-width: 700px) {
-  #Skills ul {
-    gap: 12px;
-  }
-
-  #Skills li {
-    padding: 10px 16px;
-  }
+  
 }
 
 
@@ -166,6 +159,15 @@ footer {
     padding: 8px 12px;
   }
 }
+
+
+
+
+#Skills li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.8);
+}
+/* Default desktop/tablet styles */
 #Skills ul {
   list-style: none;
   padding: 0;
@@ -187,7 +189,13 @@ footer {
   transition: 0.25s ease;
 }
 
-#Skills li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 18px rgba(96, 165, 250, 0.8);
+/* Mobile styles — TOP LEVEL, not nested */
+@media (max-width: 700px) {
+  #Skills ul {
+    gap: 12px;
+  }
+
+  #Skills li {
+    padding: 10px 16px;
+  }
 }
