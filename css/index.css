@@ -3,6 +3,7 @@
    =========================== */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 14px;
 }
 
 body {
@@ -18,35 +19,46 @@ body {
 /* ===========================
    STICKY GLASS NAVBAR
    =========================== */
-header {
+
+
+/* NAVBAR FIXES */
+nav {
   position: sticky;
   top: 0;
   z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-nav {
+/* NAV LIST */
+nav ul {
   display: flex;
   justify-content: center;
   gap: 28px;
 
-  padding: 16px 0;
-  width: 100%;
-
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  list-style: none;
+  margin: 0;
+  padding: 12px 0;
 }
+
+
+nav li {
+  display: inline-block;
+}
+
+
 nav a {
   color: #e8ecff;
   text-decoration: none;
   font-weight: 500;
   padding: 10px 16px;
   border-radius: 12px;
-
   transition: 0.3s ease;
 }
+
 nav a:hover {
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
@@ -54,42 +66,38 @@ nav a:hover {
 }
 
 /* ===========================
-   SECTIONS (CENTERED + CLEAN)
+   SECTIONS
    =========================== */
 section {
   padding: 70px 40px;
   max-width: 900px;
   margin: auto;
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 30px;
-
   backdrop-filter: blur(6px);
 }
 
 section > div {
   display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 
 /* ===========================
-   PROFILE PICTURE (FUTURISTIC)
+   PROFILE PICTURE
    =========================== */
 .profile-pic {
   width: 150px;
   height: 150px;
   border-radius: 22px;
   object-fit: cover;
-
   border: 3px solid rgba(147, 197, 253, 0.8);
   box-shadow: 0 0 18px rgba(96, 165, 250, 0.7);
   transition: 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .profile-pic:hover {
@@ -98,17 +106,15 @@ section > div {
 }
 
 /* ===========================
-   SOCIAL ICONS (NEON GLOW)
+   SOCIAL ICONS
    =========================== */
 .social-icon {
   width: 70px;
   height: 70px;
   border-radius: 16px;
   padding: 12px;
-
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(10px);
-
   transition: 0.3s ease;
   box-shadow: 0 0 18px rgba(96, 165, 250, 0.5);
 }
@@ -130,15 +136,48 @@ footer {
 }
 
 /* ===========================
+   SKILLS LIST
+   =========================== */
+#Skills ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+#Skills li {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+  transition: 0.25s ease;
+}
+
+#Skills li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.8);
+}
+#Connect ul {
+  list-style: none;   /* removes bullets */
+  padding: 0;         /* removes left indent */
+  margin: 0;          /* keeps spacing clean */
+}
+#messages {
+  display: none; /* hidden by default */
+}
+
+/* ===========================
    RESPONSIVE (MOBILE)
    =========================== */
 @media (max-width: 700px) {
   section > div {
     flex-direction: column;
   }
-  
-}
-
 
   .profile-pic {
     width: 120px;
@@ -158,39 +197,7 @@ footer {
   nav a {
     padding: 8px 12px;
   }
-}
 
-
-
-
-#Skills li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 18px rgba(96, 165, 250, 0.8);
-}
-/* Default desktop/tablet styles */
-#Skills ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-}
-
-#Skills li {
-  background: rgba(255, 255, 255, 0.12);
-  padding: 12px 20px;
-  border-radius: 12px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
-  transition: 0.25s ease;
-}
-
-/* Mobile styles — TOP LEVEL, not nested */
-@media (max-width: 700px) {
   #Skills ul {
     gap: 12px;
   }
@@ -199,3 +206,163 @@ footer {
     padding: 10px 16px;
   }
 }
+@media (max-width: 600px) {
+  #leave-message input,
+  #leave-message textarea {
+    padding: 1rem; /* bigger tap area */
+    font-size: 1.1rem;
+  }
+
+  #leave-message button[type="submit"] {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Floating Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  color: #e8ecff;
+  font-size: 24px;
+  font-weight: bold;
+
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.6);
+  transition: 0.3s ease;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hover Glow */
+#backToTop:hover {
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 28px rgba(96, 165, 250, 1);
+}
+
+/* Visible State */
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#leave-message form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+#leave-message input,
+#leave-message textarea {
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+#leave-message input:focus,
+#leave-message textarea:focus {
+  border-color: #4a90e2;
+  outline: none;
+  background: rgba(255,255,255,0.3);
+}
+
+/* Labels */
+#leave-message label {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+/
+/* Textarea height */
+#leave-message textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Submit Button */
+#leave-message button[type="submit"] {
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#leave-message button[type="submit"]:hover {
+  background-color: #357ac9;
+}
+
+/* Remove Button inside messages list */
+
+#messages button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+/* Edit button */
+#messages button:first-of-type {
+  background-color: #4a90e2;
+  color: white;
+}
+
+#messages button:first-of-type:hover {
+  background-color: #357ac9;
+  transform: translateY(-2px);
+}
+
+/* Remove button */
+#messages button:last-of-type {
+  background-color: #d9534f;
+  color: white;
+}
+
+#messages button:last-of-type:hover {
+  background-color: #c9302c;
+  transform: translateY(-2px);
+}
+#messages ul {
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#messages li {
+  list-style: none;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 12px 16px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+#messages li a {
+  color: #87ceeb;
+  text-decoration: none;
+}
+#messages li a:hover {
+  text-decoration: underline;
+}
+
