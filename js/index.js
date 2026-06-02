@@ -75,6 +75,28 @@ messageForm.addEventListener("submit", function (event) {
 
   messageForm.reset();
 });
+fetch("https://api.github.com/users/Shortsoul55/repos")
+  .then((response) => response.json())
+  .then((repositories) => {
+    const projectSection = document.querySelector("#Projects");
+    const projectList = projectSection.querySelector("ul");
+    repositories.forEach((repo) => {
+      const projectItem = document.createElement("li");
+      const projectLink = document.createElement("a");  
+      projectLink.href = repo.html_url;
+      projectLink.textContent = repo.name;
+      projectLink.target = "_blank";
+      projectItem.appendChild(projectLink);
+      projectList.appendChild(projectItem);
+    }
+    );
+  })
+  .catch((error) => {
+    const projectSection = document.querySelector("#Projects");
+    projectSection.innerHTML = "<p>Unable to load repositories at this time.</p>";
+    console.error("Error fetching repositories:", error);
+  });
+
 
 
 
