@@ -75,7 +75,7 @@ messageForm.addEventListener("submit", function (event) {
 
   messageForm.reset();
 });
-fetch("https://api.github.com/users/texstaras16/repos")
+fetch("https://api.github.com/users/Shortsoul55/repos");
   .then((response) => response.json())
   .then((repositories) => {
     console.log(repositories); // REQUIRED
