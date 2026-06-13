@@ -1,6 +1,8 @@
 let useFahrenheit = false; // default is Celsius
 let currentWeatherData = null;
 let forecastData = null;
+let savedLat = null;
+let savedLon = null;
 
 // Convert functions
 function toF(c) {
@@ -70,8 +72,13 @@ function renderForecast() {
     document.getElementById("data-container-2").innerHTML = html;
 }
 
-function loadWeather(lat, lon) {
-    // Current weather
+function loadCurrentWeather(lat, lon) {
+    document.getElementById("data-container").innerHTML = `
+        <div class="loader"></div>
+        <p>Loading current weather...</p>
+    `;
+    document.getElementById("data-container-2").innerHTML = ""; // clear old forecast on new city
+
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`)
         .then(res => res.json())
         .then(data => {
@@ -79,11 +86,18 @@ function loadWeather(lat, lon) {
             renderCurrentWeather();
         })
         .catch(err => {
+            console.error(err);
             document.getElementById("data-container").innerHTML =
                 "<p style='color:red;'>Failed to load current weather.</p>";
         });
+}
 
-    // Forecast
+function loadForecast(lat, lon) {
+    document.getElementById("data-container-2").innerHTML = `
+        <div class="loader"></div>
+        <p>Loading forecast...</p>
+    `;
+
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min&timezone=auto`)
         .then(res => res.json())
         .then(data => {
@@ -91,10 +105,12 @@ function loadWeather(lat, lon) {
             renderForecast();
         })
         .catch(err => {
+            console.error(err);
             document.getElementById("data-container-2").innerHTML =
                 "<p style='color:red;'>Failed to load forecast.</p>";
         });
 }
+
 
 
 // Toggle Button
@@ -108,19 +124,39 @@ document.getElementById("temp-toggle").addEventListener("click", () => {
     renderForecast();
 });
 
-// Search Button
-document.getElementById("search-btn").addEventListener("click", () => {
-    const city = document.getElementById("city-input").value;
-    if (!city) return;
+// Current Weather Button
+document.getElementById("current-btn").addEventListener("click", () => {
+    const city = document.getElementById("city-input").value.trim();
+    if (!city) {
+        document.getElementById("data-container").innerHTML =
+            "<p style='color:red;'>Please enter a city.</p>";
+        document.getElementById("data-container-2").innerHTML = "";
+        return;
+    }
 
     getCoordinates(city)
         .then(({ lat, lon }) => {
-            loadWeather(lat, lon);
+            savedLat = lat;
+            savedLon = lon;
+            loadCurrentWeather(lat, lon);
         })
         .catch(err => {
+            console.error(err);
             document.getElementById("data-container").innerHTML =
                 "<p style='color:red;'>City not found.</p>";
-            document.getElementById("data-container-2").innerHTML =
-                "<p style='color:red;'>City not found.</p>";
+            document.getElementById("data-container-2").innerHTML = "";
         });
 });
+
+// Forecast Button
+document.getElementById("forecast-btn").addEventListener("click", () => {
+    if (savedLat === null || savedLon === null) {
+        document.getElementById("data-container-2").innerHTML =
+            "<p style='color:red;'>Search a city first using Current Weather.</p>";
+        return;
+    }
+
+    loadForecast(savedLat, savedLon);
+});
+
+
